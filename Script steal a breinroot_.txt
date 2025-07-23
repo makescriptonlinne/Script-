@@ -1,0 +1,237 @@
+--// CESAR SCRIPT STEAL A BRAINROOT - MENU v2.9 + KEY SYSTEM //
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local keyCorrecta = "Arbix hub"
+
+local playerGui = player:WaitForChild("PlayerGui")
+local keyGui = Instance.new("ScreenGui", playerGui)
+keyGui.Name = "KeySystem"
+keyGui.ResetOnSpawn = false
+
+local frame = Instance.new("Frame", keyGui)
+frame.Size = UDim2.new(0, 300, 0, 200)
+frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+frame.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+frame.BackgroundTransparency = 0.4
+Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 10)
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1, 0, 0, 40)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.Text = "🔐 CESAR SCRIPT KEY"
+title.Font = Enum.Font.GothamBold
+title.TextSize = 22
+title.TextColor3 = Color3.new(1, 1, 1)
+title.BackgroundTransparency = 1
+
+local inputBox = Instance.new("TextBox", frame)
+inputBox.Size = UDim2.new(0.8, 0, 0, 40)
+inputBox.Position = UDim2.new(0.1, 0, 0.4, 0)
+inputBox.PlaceholderText = "Ingresa la KEY"
+inputBox.Text = ""
+inputBox.Font = Enum.Font.Gotham
+inputBox.TextSize = 18
+inputBox.TextColor3 = Color3.new(1, 1, 1)
+inputBox.BackgroundColor3 = Color3.fromRGB(20, 20, 100)
+inputBox.BackgroundTransparency = 0.2
+Instance.new("UICorner", inputBox).CornerRadius = UDim.new(0, 8)
+
+local statusLabel = Instance.new("TextLabel", frame)
+statusLabel.Size = UDim2.new(1, 0, 0, 30)
+statusLabel.Position = UDim2.new(0, 0, 0.7, 0)
+statusLabel.Text = ""
+statusLabel.Font = Enum.Font.Gotham
+statusLabel.TextSize = 16
+statusLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+statusLabel.BackgroundTransparency = 1
+
+local enterButton = Instance.new("TextButton", frame)
+enterButton.Size = UDim2.new(0.6, 0, 0, 35)
+enterButton.Position = UDim2.new(0.2, 0, 0.85, 0)
+enterButton.Text = "ENTRAR"
+enterButton.Font = Enum.Font.GothamBold
+enterButton.TextSize = 18
+enterButton.TextColor3 = Color3.new(1, 1, 1)
+enterButton.BackgroundColor3 = Color3.fromRGB(0, 120, 255)
+enterButton.BackgroundTransparency = 0.1
+Instance.new("UICorner", enterButton).CornerRadius = UDim.new(0, 6)
+
+enterButton.MouseButton1Click:Connect(function()
+    if inputBox.Text == keyCorrecta then
+        keyGui:Destroy()
+        -- Inicia el menú principal
+        loadstring([[
+
+            local Players = game:GetService("Players")
+            local player = Players.LocalPlayer
+
+            local gravityJumpOn, godModeOn, espOn, noclipOn = false, false, false, false
+            local espHighlights = {}
+
+            local defaultGravity = workspace.Gravity
+            local lowGravity = 50
+
+            local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+            screenGui.Name = "CesarScriptGUI"; screenGui.ResetOnSpawn = false
+
+            local toggleButton = Instance.new("TextButton", screenGui)
+            toggleButton.Size = UDim2.new(0,50,0,50)
+            toggleButton.Position = UDim2.new(0,20,0,20)
+            toggleButton.BackgroundColor3 = Color3.new(0,0,0)
+            toggleButton.BorderSizePixel = 3
+            toggleButton.BorderColor3 = Color3.fromRGB(0,255,0)
+            toggleButton.Text = "≡"; toggleButton.TextColor3 = Color3.new(1,1,1)
+            toggleButton.Font = Enum.Font.GothamBold; toggleButton.TextSize = 18
+            toggleButton.AutoButtonColor = false
+            Instance.new("UICorner", toggleButton).CornerRadius = UDim.new(1,0)
+
+            local frame = Instance.new("Frame", screenGui)
+            frame.Size = UDim2.new(0,400,0,360)
+            frame.Position = UDim2.new(0.5,-200,0.5,-180)
+            frame.BackgroundColor3 = Color3.fromRGB(0,0,255); frame.BackgroundTransparency = 0.5
+            frame.Visible = false; frame.Active = true; frame.Draggable = true
+            Instance.new("UICorner", frame).CornerRadius = UDim.new(0,15)
+
+            local title = Instance.new("TextLabel", frame)
+            title.Size = UDim2.new(1,0,0,40); title.Position = UDim2.new(0,0,0,0)
+            title.BackgroundTransparency = 1
+            title.Text = "CESAR SCRIPT STEAL A BRAINROOT"
+            title.TextColor3 = Color3.new(1,1,1)
+            title.Font = Enum.Font.GothamBold; title.TextSize = 22
+
+            local closeBtn = Instance.new("TextButton", frame)
+            closeBtn.Size = UDim2.new(0,30,0,30); closeBtn.Position = UDim2.new(1,-45,0,5)
+            closeBtn.Text = "X"; closeBtn.BackgroundColor3 = Color3.fromRGB(100,0,0)
+            closeBtn.TextColor3 = Color3.new(1,1,1)
+            closeBtn.Font = Enum.Font.GothamBold; closeBtn.TextSize = 18
+            Instance.new("UICorner", closeBtn).CornerRadius = UDim.new(0,5)
+
+            local function createToggleBtn(name,posY)
+                local btn = Instance.new("TextButton", frame)
+                btn.Size = UDim2.new(0.8,0,0,50); btn.Position = UDim2.new(0.1,0,0,posY)
+                btn.Text = name.." [OFF]"; btn.BackgroundColor3 = Color3.fromRGB(30,30,30)
+                btn.TextColor3 = Color3.new(1,1,1); btn.Font = Enum.Font.Gotham; btn.TextSize = 18
+                btn.BorderSizePixel = 3; btn.BorderColor3 = Color3.fromRGB(255,0,0)
+                Instance.new("UICorner", btn).CornerRadius = UDim.new(0,10)
+                return btn
+            end
+
+            local gravityJumpBtn = createToggleBtn("Saltos con gravedad", 60)
+            local godModeBtn     = createToggleBtn("God Mode", 120)
+            local espBtn         = createToggleBtn("ESP", 180)
+            local noclipBtn      = createToggleBtn("Noclip", 240)
+
+            local function updateBorder(btn,isOn)
+                btn.BorderColor3 = isOn and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+                btn.Text = isOn and btn.Text:gsub("%[OFF%]","[ON]") or btn.Text:gsub("%[ON%]","[OFF]")
+            end
+
+            local function forceStatsLoop()
+                while gravityJumpOn or godModeOn do
+                    local c = player.Character
+                    if c then
+                        local h = c:FindFirstChildOfClass("Humanoid")
+                        if h and h.Health > 0 then
+                            if godModeOn then
+                                h.Health = h.MaxHealth
+                            end
+                        end
+                    end
+                    wait(0.1)
+                end
+            end
+
+            local function setGravity(on)
+                workspace.Gravity = on and lowGravity or defaultGravity
+            end
+
+            gravityJumpBtn.MouseButton1Click:Connect(function()
+                gravityJumpOn = not gravityJumpOn
+                updateBorder(gravityJumpBtn, gravityJumpOn)
+                setGravity(gravityJumpOn)
+                if gravityJumpOn or godModeOn then coroutine.wrap(forceStatsLoop)() end
+            end)
+
+            godModeBtn.MouseButton1Click:Connect(function()
+                godModeOn = not godModeOn
+                updateBorder(godModeBtn, godModeOn)
+                if gravityJumpOn or godModeOn then coroutine.wrap(forceStatsLoop)() end
+            end)
+
+            local function addESP(plr)
+                if plr == player or espHighlights[plr] then return end
+                local function setup(c)
+                    local root = c:FindFirstChild("HumanoidRootPart")
+                    if not root then return end
+                    local hl = Instance.new("Highlight")
+                    hl.Adornee = c
+                    hl.FillColor = Color3.new(0,0,1)
+                    hl.OutlineColor = Color3.new(0,0,1)
+                    hl.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                    hl.Parent = screenGui
+                    local bg = Instance.new("BillboardGui", root)
+                    bg.Name = "NameESP"; bg.Adornee = root
+                    bg.Size = UDim2.new(0,100,0,30); bg.StudsOffset = Vector3.new(0,3,0)
+                    bg.AlwaysOnTop = true
+                    local lbl = Instance.new("TextLabel", bg)
+                    lbl.Size = UDim2.new(1,0,1,0); lbl.BackgroundTransparency = 1
+                    lbl.TextColor3 = Color3.new(0,0,1)
+                    lbl.TextStrokeTransparency = 0
+                    lbl.TextStrokeColor3 = Color3.new(0,0,0)
+                    lbl.TextScaled = true; lbl.Text = plr.Name
+                    espHighlights[plr] = {highlight=hl, nameTag=bg}
+                end
+                if plr.Character then setup(plr.Character) end
+                plr.CharacterAdded:Connect(function(c) wait(0.5); if espOn then setup(c) end end)
+            end
+
+            espBtn.MouseButton1Click:Connect(function()
+                espOn = not espOn
+                updateBorder(espBtn, espOn)
+                for _,d in pairs(espHighlights) do
+                    if d.highlight then d.highlight:Destroy() end
+                    if d.nameTag then d.nameTag:Destroy() end
+                end
+                espHighlights = {}
+                if espOn then
+                    for _,plr in ipairs(Players:GetPlayers()) do addESP(plr) end
+                end
+            end)
+
+            Players.PlayerAdded:Connect(function(plr) if espOn then addESP(plr) end end)
+
+            local function noclipLoop()
+                while noclipOn do
+                    local c = player.Character
+                    if c then
+                        for _,v in pairs(c:GetDescendants()) do
+                            if v:IsA("BasePart") then
+                                v.CanCollide = false
+                            end
+                        end
+                    end
+                    task.wait()
+                end
+            end
+
+            noclipBtn.MouseButton1Click:Connect(function()
+                noclipOn = not noclipOn
+                updateBorder(noclipBtn, noclipOn)
+                if noclipOn then coroutine.wrap(noclipLoop)() end
+            end)
+
+            toggleButton.MouseButton1Click:Connect(function()
+                frame.Visible = not frame.Visible
+            end)
+
+            closeBtn.MouseButton1Click:Connect(function()
+                frame.Visible = false
+            end)
+
+        ]])()
+    else
+        statusLabel.Text = "❌ Key incorrecta."
+    end
+end)
